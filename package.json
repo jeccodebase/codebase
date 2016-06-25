@@ -1,15 +1,27 @@
 {
   "name": "codebase",
   "version": "1.0.0",
-  "description": "",
+  "description": "This website is under development. Platform: NodeJS",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Aman Dwivedi <aman_d1996@yahoo.com>",
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
     "express3-handlebars": "^0.5.2"
-  }
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amand1996/codebase.git"
+  },
+  "bugs": {
+    "url": "https://github.com/amand1996/codebase/issues"
+  },
+  "homepage": "https://github.com/amand1996/codebase#readme"
 }
