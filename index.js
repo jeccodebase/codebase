@@ -35,3 +35,24 @@ app.listen(app.get('port'), function(){
 var handlebars = require('express3-handlebars').create({defaultLayout:'main'});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
+
+app.get('/', function(req, res){
+	res.render('home');
+});
+app.get('/about', function(req, res){
+	var randomFortune = fortunes[Math.floor(Math.random()*fortunes.length)]
+	res.render('about', {fortune : randomFortune});
+});
+//404 catch-all handler(middleware)
+app.use(function(req, res, next){
+	res.status(404);
+	res.render('404');
+});
+//500 error handler(middleware)
+app.use(function(err, req, res){
+	console.error(err.stack);
+	res.status(500);
+	res.render('500');
+});
+
+app.use(express.static(__dirname + '/public'));
