@@ -7,12 +7,13 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var debug = require('debug')('my-application');
 
 var app = express();
-
+app.use(express.static(__dirname + '/public'));
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'jade');
 
 app.use(favicon());
 app.use(logger('dev'));
@@ -21,7 +22,9 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', function(req, res){
+    res.send('index.html');
+});
 app.use('/users', users);
 
 /// catch 404 and forwarding to error handler
@@ -54,6 +57,13 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+app.set('port', process.env.PORT || 3000);
+
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});
+
 
 
 module.exports = app;
